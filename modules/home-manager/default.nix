@@ -20,6 +20,7 @@
         "$HOME/.cargo/bin"
         "/opt/homebrew/opt/openjdk/bin"
         "/Users/joe/.local/bin"
+        "$HOME/go/bin"
     ];
     # Home Manager is only able to set session variables automatically if it manages your Bash, Z shell, or fish shell configuration.
     programs.zsh.enable = true;
@@ -65,7 +66,8 @@
             "editor.inlineSuggest.enabled" = true;
             "workbench.colorTheme" = "Material Theme Palenight High Contrast";
             "[astro]"= {
-                "editor.defaultFormatter"= "astro-build.astro-vscode";
+                # "editor.defaultFormatter"= "astro-build.astro-vscode";
+                "editor.defaultFormatter"= "esbenp.prettier-vscode";
             };
             "[javascript]"= {
                 "editor.defaultFormatter"= "esbenp.prettier-vscode";
