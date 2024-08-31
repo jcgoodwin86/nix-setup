@@ -10,9 +10,9 @@
         sd
         du-dust
         ripgrep
-        speedtest-cli
-        # trashy
-        vscode
+        #speedtest-cli
+        #trashy
+        #vscode
         lazygit
     ];
     home.sessionPath = [

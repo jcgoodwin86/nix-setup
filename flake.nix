@@ -14,7 +14,7 @@
         darwin.inputs.nixpkgs.follows = "nixpkgs";     
     };
     outputs = inputs@{ nixpkgs, home-manager, darwin, ...}: {
-        darwinConfigurations."Joes-MacBook-Pro" = darwin.lib.darwinSystem {
+        darwinConfigurations."joes-MacBook-Pro" = darwin.lib.darwinSystem {
             system = "aarch64-darwin";
             pkgs = import nixpkgs { system = "aarch64-darwin"; config.allowUnfree = true; };
             modules = [

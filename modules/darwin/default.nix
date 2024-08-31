@@ -33,6 +33,7 @@
         brews = [
             "pipx"
             "mas"
+            "ffmpeg"
         ];
         masApps = {
             "Amphetamine" = 937984704;
@@ -40,21 +41,21 @@
             "Presentify - Screen Annotation" = 1507246666;
             "Streaks" = 963034692;
             "Craft - Docs and Notes Editor" = 1487937127;
-            "Photomator – Photo Editor" = 1444636541;
-            "Pixelmator Pro" = 1289583905;
             "CleanMyMac X" = 1339170533;
-            #"Endel: Focus, Sleep, Relax" = 1346247457;
-            #"Things 3" = 904280696; # Using the beta one in testflight
-            #"Unsplash Wallpapers" = 1284863847;
-            #"Drafts" = 1435957248;
-            #"Portal - Immersive Escapes" = 1436994560;
-            #"Bear Markdown Notes" = 1091189122;
+            "Endel: Focus, Sleep, Relax" = 1346247457;
+            "Lunatask: A Better To-Do List (2.0.6)" = 1583719331;
+            # "HazeOver • Distraction Dimmer" = 430798174;
+            # "Photomator – Photo Editor" = 1444636541;
+            # "Pixelmator Pro" = 1289583905;
+            # "Things 3" = 904280696; # Using the beta one in testflight
+            # "Unsplash Wallpapers" = 1284863847;
+            # "Drafts" = 1435957248;
+            # "Portal - Immersive Escapes" = 1436994560;
+            # "Bear Markdown Notes" = 1091189122;
         };
         casks = [
             "jordanbaird-ice"
             "zotero"
-            "jan"
-            "ollama"
             "zed"
             "soundsource"
             "copilot"
@@ -70,6 +71,7 @@
             "betterdisplay"
             "heptabase"
             "1password"
+            "1password-cli"
             "arc"
             "warp"
             "readdle-spark"
@@ -80,26 +82,32 @@
             "obsidian"
             "zoom"
             "cleanshot"
-            "adobe-creative-cloud"
-            "maccy"
             "nvidia-geforce-now"
             "figma"
             "raycast"
-            "godot"
             "steam"
             "beeper"
             "notion"
+            "anytype"
+            "espanso"
+            "cursor"
             "parallels"
+            "setapp"
+            # "godot"
+            # "superlist"
+            # "appflowy"
+            # "jan"
+            # "ollama"
+            # "morgen"
+            # "adobe-creative-cloud"
+            # "maccy"
             # "boom-3d"
             # "logseq"
-            # "morgen"
             # "bartender"
             # "mindmac"
             # "firefox-developer-edition"
             # "google-chrome-dev"
             # "microsoft-edge"
-            # "espanso"
-            # "cursor"
             # "sunsama"
             # "reflect"
             # "swish"
