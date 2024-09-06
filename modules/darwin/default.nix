@@ -4,10 +4,10 @@
     programs.zsh.enable = true;
     environment = {
         systemPackages = [
-            pkgs.coreutils
-            pkgs.discord
-            pkgs.slack
-            pkgs.spotify
+            # pkgs.coreutils
+            # pkgs.discord
+            # pkgs.slack
+            # pkgs.spotify
             ];
         systemPath = [ "/opt/homebrew/bin" ];
     };
@@ -31,9 +31,9 @@
         onActivation.cleanup = "zap";
         taps = [];
         brews = [
-            "pipx"
-            "mas"
-            "ffmpeg"
+            # "pipx"
+             "mas"
+            # "ffmpeg"
         ];
         masApps = {
             "Amphetamine" = 937984704;
@@ -44,7 +44,7 @@
             "CleanMyMac X" = 1339170533;
             "Endel: Focus, Sleep, Relax" = 1346247457;
             "Lunatask: A Better To-Do List (2.0.6)" = 1583719331;
-            # "HazeOver • Distraction Dimmer" = 430798174;
+            "HazeOver • Distraction Dimmer" = 430798174;
             # "Photomator – Photo Editor" = 1444636541;
             # "Pixelmator Pro" = 1289583905;
             # "Things 3" = 904280696; # Using the beta one in testflight
@@ -57,25 +57,25 @@
             "jordanbaird-ice"
             "zotero"
             "zed"
-            "soundsource"
-            "copilot"
+            # "soundsource"
+            # "copilot"
             "affine"
             "linear-linear"
             "dropbox"
             "epic-games"
-            "font-hack-nerd-font"
+            # "font-hack-nerd-font"
             "messenger"
             "grammarly-desktop"
             "telegram"
-            "bettertouchtool"
-            "betterdisplay"
-            "heptabase"
+            # "bettertouchtool"
+            # "betterdisplay"
+            # "heptabase"
             "1password"
             "1password-cli"
             "arc"
             "warp"
             "readdle-spark"
-            "istat-menus"
+            # "istat-menus"
             "todoist"
             "devonthink"
             "devonagent"
@@ -91,7 +91,7 @@
             "anytype"
             "espanso"
             "cursor"
-            "parallels"
+            # "parallels"
             "setapp"
             # "godot"
             # "superlist"
