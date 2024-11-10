@@ -5,9 +5,11 @@
     environment = {
         systemPackages = [
             # pkgs.coreutils
-            # pkgs.discord
-            # pkgs.slack
-            # pkgs.spotify
+             pkgs.discord
+             pkgs.slack
+             pkgs.spotify
+             pkgs.gh
+             pkgs.go
             ];
         systemPath = [ "/opt/homebrew/bin" ];
     };
@@ -31,51 +33,55 @@
         onActivation.cleanup = "zap";
         taps = [];
         brews = [
-            # "pipx"
-             "mas"
-            # "ffmpeg"
+            "flyctl"
+            "flock"
+            "fastfetch"
+            "mas"
+            # This packages are for bulding screenpipe
+            "rust"
+            "pkg-config"
+            "ffmpeg"
+            "jq"
+            "tesseract"
+            "cmake"
+            "wget"
+            "deno"
         ];
         masApps = {
             "Amphetamine" = 937984704;
             "rcmd" = 1596283165;
             "Presentify - Screen Annotation" = 1507246666;
-            "Streaks" = 963034692;
-            "Craft - Docs and Notes Editor" = 1487937127;
-            "CleanMyMac X" = 1339170533;
             "Endel: Focus, Sleep, Relax" = 1346247457;
-            "Lunatask: A Better To-Do List (2.0.6)" = 1583719331;
             "HazeOver • Distraction Dimmer" = 430798174;
-            # "Photomator – Photo Editor" = 1444636541;
-            # "Pixelmator Pro" = 1289583905;
-            # "Things 3" = 904280696; # Using the beta one in testflight
+            "Photomator – Photo Editor" = 1444636541;
+            "Pixelmator Pro" = 1289583905;
+            "Structured - Daily Planner" = 1499198946;
+            "one sec | screen time + focus" = 1532875441;
+            "Toggl Track: Hours & Time Log" = 1291898086;
+            # "Streaks" = 963034692;
+            # "Craft - Docs and Notes Editor" = 1487937127;
+            # "CleanMyMac X" = 1339170533;
             # "Unsplash Wallpapers" = 1284863847;
-            # "Drafts" = 1435957248;
             # "Portal - Immersive Escapes" = 1436994560;
-            # "Bear Markdown Notes" = 1091189122;
         };
         casks = [
             "jordanbaird-ice"
             "zotero"
             "zed"
-            # "soundsource"
-            # "copilot"
             "affine"
             "linear-linear"
-            "dropbox"
             "epic-games"
-            # "font-hack-nerd-font"
             "messenger"
             "grammarly-desktop"
             "telegram"
-            # "bettertouchtool"
-            # "betterdisplay"
-            # "heptabase"
+            "betterdisplay"
+            "heptabase"
             "1password"
             "1password-cli"
             "arc"
             "warp"
             "readdle-spark"
-            # "istat-menus"
+            "istat-menus"
             "todoist"
             "devonthink"
             "devonagent"
@@ -88,32 +94,23 @@
             "steam"
             "beeper"
             "notion"
-            "anytype"
-            "espanso"
-            "cursor"
-            # "parallels"
-            "setapp"
-            # "godot"
-            # "superlist"
-            # "appflowy"
+            "morgen"
+            "boom-3d"
+            "bettertouchtool"
+            "ollama"
+            # "ubersicht"
+            # "anytype"
+            # "espanso"
+            # "cursor"
+            # "protonvpn"
+            # "proton-mail"
+            # "soundsource"
             # "jan"
-            # "ollama"
-            # "morgen"
-            # "adobe-creative-cloud"
             # "maccy"
-            # "boom-3d"
             # "logseq"
             # "bartender"
             # "mindmac"
-            # "firefox-developer-edition"
-            # "google-chrome-dev"
-            # "microsoft-edge"
-            # "sunsama"
-            # "reflect"
             # "swish"
-            # "capacities"
-            # "textsniper"
-            # "mem"
             # "signal"
         ];
     };

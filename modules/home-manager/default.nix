@@ -18,6 +18,7 @@
         "/opt/homebrew/opt/openjdk/bin"
         "/Users/joe/.local/bin"
         "$HOME/go/bin"
+        # "$HOME/Projects/screenpipe/target/release/"
     ];
     # Home Manager is only able to set session variables automatically if it manages your Bash, Z shell, or fish shell configuration.
     programs.zsh.enable = true;
@@ -69,6 +70,12 @@
             "[javascript]"= {
                 "editor.defaultFormatter"= "esbenp.prettier-vscode";
             };
+            "[typescript]"= {
+                "editor.defaultFormatter"= "esbenp.prettier-vscode";
+            };
+            "[svelte]"= {
+                "editor.defaultFormatter"= "svelte.svelte-vscode";
+            };
             "[javascriptreact]"= {
                 "editor.defaultFormatter"= "esbenp.prettier-vscode";
             };
@@ -83,13 +90,20 @@
                 "javascript"
                 "javascriptreact"
                 "astro" # Enable .astro
-                #"typescript" # Enable .ts
-                #"typescriptreact" # Enable .tsx
+                "typescript" # Enable .ts
+                "typescriptreact" # Enable .tsx
             ];
-            "gitlens.ai.experimental.model"= "openai:gpt-4o";
+            # "gitlens.ai.experimental.model"= "openai:gpt-4o";
             "[python]"= {
                 "editor.defaultFormatter"= "ms-python.black-formatter";
             };
+            "[html]"= {
+                "editor.defaultFormatter"= "esbenp.prettier-vscode";
+            };
+            "terminal.integrated.env.osx"= {};
+            "files.autoSave"= "onFocusChange";
+            "svelte.enable-ts-plugin"= true;
+            "console-ninja.featureSet"= "Community";
         };
 };
 })
