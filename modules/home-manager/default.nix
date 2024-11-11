@@ -18,7 +18,7 @@
         "/opt/homebrew/opt/openjdk/bin"
         "/Users/joe/.local/bin"
         "$HOME/go/bin"
-        # "$HOME/Projects/screenpipe/target/release/"
+        "$HOME/Projects/screenpipe/target/release"
     ];
     # Home Manager is only able to set session variables automatically if it manages your Bash, Z shell, or fish shell configuration.
     programs.zsh.enable = true;
@@ -46,11 +46,9 @@
     programs.vscode = {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
-            dracula-theme.theme-dracula
             bbenoist.nix
             christian-kohler.path-intellisense
             dbaeumer.vscode-eslint
-            eamodio.gitlens
             esbenp.prettier-vscode
             formulahendry.auto-rename-tag
             ritwickdey.liveserver

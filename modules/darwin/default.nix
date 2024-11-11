@@ -4,12 +4,12 @@
     programs.zsh.enable = true;
     environment = {
         systemPackages = [
-            # pkgs.coreutils
-             pkgs.discord
-             pkgs.slack
-             pkgs.spotify
-             pkgs.gh
-             pkgs.go
+            pkgs.coreutils
+            pkgs.discord
+            pkgs.slack
+            # pkgs.spotify
+            pkgs.gh
+            # pkgs.go
             ];
         systemPath = [ "/opt/homebrew/bin" ];
     };
@@ -31,12 +31,12 @@
         caskArgs.no_quarantine = true;
         global.brewfile = true;
         onActivation.cleanup = "zap";
-        taps = [];
+        taps = ["oven-sh/bun"];
         brews = [
-            "flyctl"
-            "flock"
-            "fastfetch"
-            "mas"
+            #"flyctl"
+            #"flock"
+            #"fastfetch"
+            #"mas"
             # This packages are for bulding screenpipe
             "rust"
             "pkg-config"
@@ -46,18 +46,19 @@
             "cmake"
             "wget"
             "deno"
+            "bun"
         ];
         masApps = {
             "Amphetamine" = 937984704;
             "rcmd" = 1596283165;
             "Presentify - Screen Annotation" = 1507246666;
-            "Endel: Focus, Sleep, Relax" = 1346247457;
             "HazeOver • Distraction Dimmer" = 430798174;
-            "Photomator – Photo Editor" = 1444636541;
-            "Pixelmator Pro" = 1289583905;
             "Structured - Daily Planner" = 1499198946;
             "one sec | screen time + focus" = 1532875441;
-            "Toggl Track: Hours & Time Log" = 1291898086;
+            # "Endel: Focus, Sleep, Relax" = 1346247457;
+            # "Photomator – Photo Editor" = 1444636541;
+            # "Pixelmator Pro" = 1289583905;
+            # "Toggl Track: Hours & Time Log" = 1291898086;
             # "Streaks" = 963034692;
             # "Craft - Docs and Notes Editor" = 1487937127;
             # "CleanMyMac X" = 1339170533;
@@ -70,10 +71,7 @@
             "zed"
             "affine"
             "linear-linear"
-            "epic-games"
-            "messenger"
             "grammarly-desktop"
-            "telegram"
             "betterdisplay"
             "heptabase"
             "1password"

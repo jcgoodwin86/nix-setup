@@ -14,7 +14,8 @@
         darwin.inputs.nixpkgs.follows = "nixpkgs";     
     };
     outputs = inputs@{ nixpkgs, home-manager, darwin, ...}: {
-        darwinConfigurations."joes-MBP" = darwin.lib.darwinSystem {
+        security.pam.enableSudoTouchIdAuth = true;
+        darwinConfigurations."main-frame" = darwin.lib.darwinSystem {
             system = "aarch64-darwin";
             pkgs = import nixpkgs { system = "aarch64-darwin"; config.allowUnfree = true; };
             modules = [
