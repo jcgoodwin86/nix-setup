@@ -25,6 +25,9 @@
     # programs.zsh.localVariables = {
     #     CPPFLAGS = "-I/opt/homebrew/opt/openjdk/include";
     # };
+    programs.zsh.extraConfig = ''
+        ${builtins.readFile ./custom.zsh}
+    '';
     programs.zsh.shellAliases = {
         ll = "eza --color auto --icons -lF ";
         la = "eza --color auto --icons -laF ";
@@ -45,6 +48,7 @@
     };
     programs.vscode = {
         enable = true;
+        mutableExtensionsDir = false;
         extensions = with pkgs.vscode-extensions; [
             bbenoist.nix
             christian-kohler.path-intellisense
@@ -55,7 +59,9 @@
             streetsidesoftware.code-spell-checker
             gruntfuggly.todo-tree
             vscodevim.vim
-            equinusocio.vsc-material-theme
+            github.copilot
+            github.copilot-chat
+            svelte.svelte-vscode
   ];
         userSettings = {
             "editor.accessibilitySupport" = "off";

@@ -31,7 +31,10 @@
         caskArgs.no_quarantine = true;
         global.brewfile = true;
         onActivation.cleanup = "zap";
-        taps = ["oven-sh/bun"];
+        taps = [
+            "oven-sh/bun"
+            "pkgxdev/made"
+        ];
         brews = [
             #"flyctl"
             #"flock"
@@ -47,6 +50,7 @@
             "wget"
             "deno"
             "bun"
+            "pkgxdev/made/pkgx"
         ];
         masApps = {
             "Amphetamine" = 937984704;
