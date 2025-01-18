@@ -1,135 +1,38 @@
-pkgx() {
-  case "$1" in
-  install)
-    if [ $# -gt 1 ]; then
-      command pkgx "$@"
-    elif type _pkgx_install >/dev/null 2>&1; then
-      _pkgx_install
-    else
-      echo "pkgx: nothing to install" >&2
-      return 1
-    fi;;
-  unload)
-    if type _pkgx_reset >/dev/null 2>&1; then
-      _pkgx_reset
-    fi
-    unset -f _pkgx_chpwd_hook _pkgx_should_deactivate_devenv pkgx x command_not_found_handler command_not_found_handle pkgx@latest _pkgx_commit _pkgx_dev_off _pkgx_provider >/dev/null 2>&1
-    echo "pkgx: shellcode unloaded" >&2;;
-  *)
-    command pkgx "$@";;
-  esac
-}
-
-if ! type x >/dev/null 2>&1; then
-  eval 'x() {
-    case $1 in
-    "")
-      if [ -f "/Users/joe/Library/Application Support/pkgx/shellcode/x.$$" ]; then
-        if foo="$("/Users/joe/Library/Application Support/pkgx/shellcode/u.$$")"; then
-          eval "$foo"
-          ${SHELL:-/bin/sh} "/Users/joe/Library/Application Support/pkgx/shellcode/x.$$"
-          unset foo
-        fi
-        rm -f "/Users/joe/Library/Application Support/pkgx/shellcode/"?.$$
-      else
-        echo "pkgx: nothing to run" >&2
-        return 1
-      fi;;
-    *)
-      command pkgx -- "$@";;
-    esac
-  }'
-fi
-
-env() {
-  for arg in "$@"; do
-    case $arg in
-    --*)
-      command env "$@"
-      return;;
-    -*);;
-    +*);;
-    *)
-      command env "$@"
-      return;;
-    esac
-  done
-  if [ $# -eq 0 ]; then
-    command env
-    return
-  elif type _pkgx_reset >/dev/null 2>&1; then
-    _pkgx_reset
-  fi
-  eval "$(command pkgx --internal.use "$@")"
-}
-
-dev() {
-  if [ "$1" = 'off' ]; then
-    if type _pkgx_dev_off >/dev/null 2>&1; then
-      _pkgx_dev_off
-    else
-      echo 'dev: environment not active' >&2
-      return 1
-    fi
-  elif type _pkgx_dev_off >/dev/null 2>&1; then
-    echo 'dev: environment already active' >&2
-    return 1
-  else
-    if type _pkgx_reset >/dev/null 2>&1; then
-      _pkgx_reset
-    fi
-    eval "$(command pkgx --internal.activate "$PWD" "$@")"
-  fi
-}
-
-_pkgx_provider() {
-  if ! command pkgx --silent --provider "$1"; then
-    command pkgx --sync --keep-going --silent --provider "$1"
-  fi
-}
-
-command_not_found_handler() {
-  if [ $1 = pkgx ]; then
-    echo 'fatal: `pkgx` not in PATH' >&2
-    return 1
-  elif [ -t 2 ] && _pkgx_provider $1; then
-    echo -e '\e[2m^^ type `\e[0mx\e[2m` to run that\e[0m' >&2
-
-    d="/Users/joe/Library/Application Support/pkgx/shellcode"
-    mkdir -p "$d"
-    echo "#!${SHELL:-/bin/sh}" > "$d/u.$$"
-    echo "echo -e \"\033[38;5;63menv\033[0m +$1 \e[2m&&\e[0m $@ \" >&2" >> "$d/u.$$"
-    echo "exec pkgx --internal.use +\"$1\"" >> "$d/u.$$"
-    chmod u+x "$d/u.$$"
-    echo -n "exec " > "$d/x.$$"
-    for arg in "$@"; do
-      printf "%q " "$arg" >> "$d/x.$$"
-    done
-
-    return 127
-  else
-    echo "cmd not found: $1" >&2
-    return 127
-  fi
-}
-
 _pkgx_chpwd_hook() {
-  if _pkgx_should_deactivate_devenv >/dev/null 2>&1; then
-    _pkgx_dev_off --shy
-  fi
-  if ! type _pkgx_dev_off >/dev/null 2>&1; then
+  if ! type _pkgx_dev_try_bye >/dev/null 2>&1 || _pkgx_dev_try_bye; then
     dir="$PWD"
     while [ "$dir" != "/" ]; do
       if [ -f "/Users/joe/Library/Application Support/pkgx/dev/$dir/dev.pkgx.activated" ]; then
-        if type _pkgx_reset >/dev/null 2>&1; then
-          _pkgx_reset
-        fi
-        eval "$(command pkgx --internal.activate "$dir")"
+        eval "$(/Users/joe/.pkgx/pkgx.sh/dev/v1.4.0/bin/dev)"
         break
       fi
       dir="$(dirname "$dir")"
     done
   fi
+}
+
+dev() {
+  case "$1" in
+  off)
+    if type -f _pkgx_dev_try_bye >/dev/null 2>&1; then
+      rm "/Users/joe/Library/Application Support/pkgx/dev$PWD/dev.pkgx.activated"
+      PWD=/ _pkgx_dev_try_bye
+    else
+      echo "no devenv" >&2
+    fi;;
+  ''|on)
+    if [ "$2" ]; then
+      "/Users/joe/.pkgx/pkgx.sh/dev/v1.4.0/bin/dev" "$@"
+    elif ! type -f _pkgx_dev_try_bye >/dev/null 2>&1; then
+      mkdir -p "/Users/joe/Library/Application Support/pkgx/dev$PWD"
+      touch "/Users/joe/Library/Application Support/pkgx/dev$PWD/dev.pkgx.activated"
+      eval "$(/Users/joe/.pkgx/pkgx.sh/dev/v1.4.0/bin/dev)"
+    else
+      echo "devenv already active" >&2
+    fi;;
+  *)
+    "/Users/joe/.pkgx/pkgx.sh/dev/v1.4.0/bin/dev" "$@";;
+  esac
 }
 
 if [ -n "$ZSH_VERSION" ] && [ $(emulate) = zsh ]; then
@@ -141,35 +44,14 @@ if [ -n "$ZSH_VERSION" ] && [ $(emulate) = zsh ]; then
 
         if [ "$TERM_PROGRAM" != Apple_Terminal ]; then
           _pkgx_chpwd_hook
-        fi
-
-        _pkgx() {
-          local words
-          words=($(pkgx --shell-completion $1))
-          reply=($words)
-        }
-        compctl -K _pkgx pkgx'
+        fi'
 elif [ -n "$BASH_VERSION" ] && [ "$POSIXLY_CORRECT" != y ] ; then
   eval 'cd() {
           builtin cd "$@" || return
           _pkgx_chpwd_hook
         }
-
-        command_not_found_handle() {
-          command_not_found_handler "$@"
-        }
-
         _pkgx_chpwd_hook'
 else
   POSIXLY_CORRECT=y
-  echo "pkgx: warning: unsupported shell" >&2
-fi
-
-if [ "$POSIXLY_CORRECT" != y ]; then
-  eval 'pkgx@latest() {
-          command pkgx pkgx@latest "$@"
-        }'
-  if [[ "$PATH" != *"$HOME/.local/bin"* ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
-  fi
+  echo "pkgx: dev: warning: unsupported shell" >&2
 fi

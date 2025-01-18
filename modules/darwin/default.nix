@@ -36,6 +36,7 @@
     brews = [
       "flyctl"
       "pkgxdev/made/pkgx"
+      "pkgxdev/made/pkgm"
       "fzf"
       "aider"
     ];
@@ -60,7 +61,6 @@
     };
     casks = [
       "ghostty"
-      "docker"
       "epic-games"
       "keyboard-maestro"
       "jordanbaird-ice"
